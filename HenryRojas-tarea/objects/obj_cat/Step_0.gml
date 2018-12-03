@@ -4,23 +4,31 @@
  * @since 1.0.0
  * @package Tarea
  */
-speed = 5;
-if mouse_check_button_pressed(mb_left) //if you're clicking with your left mouse button
+if mouse_check_button(mb_left)
 {
+	speed = 5;
 	xx = mouse_x;
-	yy = mouse_y; //update coordinates
+	yy = mouse_y; 
+} else {
+	obj_cat.speed = 0;
+	speed = 0;
 }
-move_towards_point(xx,yy,speed); //moves to xx and yy with a speed of 5
-if ( obj_cat.x != xx and obj_cat.y != yy ) {
-	if direction > 80 and direction <= 110 and sprite_index != spr_cat_up
+
+if ( obj_cat.speed > 0 ) {
+	if direction > 81 and direction <= 109
     sprite_index = spr_cat_up;
-	else if direction > 111 and direction <= 260 and sprite_index != spr_cat_left
+	else if direction > 111 and direction <= 260
 	    sprite_index = spr_cat_left;
-	else if direction > 261 and direction <= 280 and sprite_index != spr_cat_down
+	else if direction > 261 and direction <= 279
 	    sprite_index = spr_cat_down;
-	else if (direction > 1 and direction <= 79) or (direction > 281 and direction <= 359)  and sprite_index != spr_cat_right
+	else if (direction > 1 and direction <= 79) or (direction > 281 and direction <= 359)
 	    sprite_index = spr_cat_right;
+	else if sprite_index != spr_cat_idle
+		sprite_index = spr_cat_idle;
 } else {
 	sprite_index = spr_cat_idle;
 }
+
+move_towards_point(xx,yy,speed);
+
 	
